@@ -25,6 +25,12 @@ Usage
 
 `cast status`: show a status message.
 
+`cast toggle`: toggle play/pause.
+
+`cast seek 10`: seek to 10th second of the song.
+
+`cast rewind`: restart current content.
+
 Configuration
 -------------
 cast loads it's config from ~/.config/cast/config.ini. An example config looks

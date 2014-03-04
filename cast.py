@@ -5,6 +5,9 @@ Usage:
     cast pause
     cast play
     cast status
+    cast toggle
+    cast seek <second>
+    cast rewind
     cast volume [<value>]
 
 Options:
@@ -37,6 +40,11 @@ requests_logger = logging.getLogger('requests.packages.urllib3.connectionpool')
 requests_logger.setLevel(logging.ERROR)
 
 
+def _to_minutes(seconds):
+    """ Make a nice time string from the given seconds. """
+    return '%d:%d' % divmod(seconds, 60)
+
+
 def _volume_command(ramp, volume):
     """ Set the value if a volume level is provided, else print the current
     volume level. """
@@ -53,12 +61,14 @@ def _status_command(cast, ramp):
     else:
         play_symbol = u'\u2759\u2759'
 
-    print u' %s %s by %s from %s via %s' % (
+    print u' %s %s by %s from %s via %s, %s of %s' % (
         play_symbol,
         ramp.title,
         ramp.artist,
         ramp.album,
-        cast.app.app_id
+        cast.app.app_id,
+        _to_minutes(ramp.current_time),
+        _to_minutes(ramp.duration)
     )
 
 
@@ -75,15 +85,21 @@ def main():
     # Wait for ramp connection to be initted.
     time.sleep(SLEEP_TIME)
 
-    if opts['next'] is True:
+    if opts['next']:
         ramp.next()
-    elif opts['pause'] is True:
+    elif opts['pause']:
         ramp.pause()
-    elif opts['play'] is True:
+    elif opts['play']:
         ramp.play()
-    elif opts['status'] is True:
+    elif opts['toggle']:
+        ramp.playpause()
+    elif opts['seek']:
+        ramp.seek(opts['<second>'])
+    elif opts['rewind']:
+        ramp.rewind()
+    elif opts['status']:
         _status_command(cast, ramp)
-    elif opts['volume'] is True:
+    elif opts['volume']:
         _volume_command(ramp, opts['<value>'])
 
     # Wait for command to be sent.
