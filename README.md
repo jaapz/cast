@@ -40,7 +40,6 @@ like this:
     chromecast_ip=192.168.178.19
     sleep_time=0.3
 
-
 License
 -------
 This tool is released under the MIT license. See `LICENSE`.
@@ -50,3 +49,10 @@ Thanks
 Many thanks to Paul Schoutsen for creating
 [pychromecast](https://github.com/balloob/pychromecast), on which this utility
 greatly relies.
+
+Donate
+------
+Support development by tipping me a beer (because programming with beer is
+inherently better than programming without)!
+
+[![Support via Gittip](https://rawgithub.com/chris---/Donation-Badges/master/gittip.jpeg)](https://www.gittip.com/jaapz)
