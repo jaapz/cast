@@ -20,12 +20,12 @@ import logging
 from ConfigParser import ConfigParser
 from os.path import expanduser
 
+# Parse config file into constants.
 config = ConfigParser()
 config.read(expanduser('~/.config/cast/config.ini'))
 
 CHROMECAST_HOST = config.get('cast', 'chromecast_ip')
 SLEEP_TIME = float(config.get('cast', 'sleep_time'))
-
 
 # HACK: disable the pychromecast and requests loggers because the pychromecast
 # module sets the global logging level to INFO and we do not want to see all

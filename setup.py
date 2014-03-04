@@ -16,6 +16,7 @@ setup(
     # PyChromecast is not yet pushed to PyPI so for now this next option will
     # not work.
     #install_requires=['pychromecast'],
+    install_requires=['docopt'],
     entry_points={
         'console_scripts': [
             'cast = cast:main'
