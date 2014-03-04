@@ -17,6 +17,16 @@ import pychromecast
 import time
 import logging
 
+from ConfigParser import ConfigParser
+from os.path import expanduser
+
+config = ConfigParser()
+config.read(expanduser('~/.config/cast/config.ini'))
+
+CHROMECAST_HOST = config.get('cast', 'chromecast_ip')
+SLEEP_TIME = float(config.get('cast', 'sleep_time'))
+
+
 # HACK: disable the pychromecast and requests loggers because the pychromecast
 # module sets the global logging level to INFO and we do not want to see all
 # the ugly logging output.
@@ -25,12 +35,6 @@ pychromecast_logger.setLevel(logging.ERROR)
 
 requests_logger = logging.getLogger('requests.packages.urllib3.connectionpool')
 requests_logger.setLevel(logging.ERROR)
-
-# TODO: move to some config file
-CHROMECAST_HOST = '192.168.178.19'
-SLEEP_TIME = 0.3
-
-
 def _volume_command(ramp, volume):
     """ Set the value if a volume level is provided, else print the current
     volume level. """

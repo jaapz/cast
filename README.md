@@ -23,7 +23,17 @@ Usage
 `cast volume 0.3`: set current volume to 0.3 (needs to be a value between 0 and
 1)
 
-`cast status`: show a status message.`
+`cast status`: show a status message.
+
+Configuration
+-------------
+cast loads it's config from ~/.config/cast/config.ini. An example config looks
+like this:
+
+    [cast]
+    chromecast_ip=192.168.178.19
+    sleep_time=0.3
+
 
 License
 -------
