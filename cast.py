@@ -35,6 +35,8 @@ pychromecast_logger.setLevel(logging.ERROR)
 
 requests_logger = logging.getLogger('requests.packages.urllib3.connectionpool')
 requests_logger.setLevel(logging.ERROR)
+
+
 def _volume_command(ramp, volume):
     """ Set the value if a volume level is provided, else print the current
     volume level. """
