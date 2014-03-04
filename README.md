@@ -24,3 +24,9 @@ Usage
 License
 -------
 This tool is released under the MIT license. See `LICENSE`.
+
+Thanks
+------
+Many thanks to Paul Schoutsen for creating
+[pychromecast](https://github.com/balloob/pychromecast), on which this utility
+greatly relies.
