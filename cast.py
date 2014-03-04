@@ -46,6 +46,22 @@ def _volume_command(ramp, volume):
         print ramp.volume
 
 
+def _status_command(cast, ramp):
+    """ Build a nice status message and print it to stdout. """
+    if ramp.is_playing:
+        play_symbol = u'\u25B6'
+    else:
+        play_symbol = u'\u2759\u2759'
+
+    print u' %s %s by %s from %s via %s' % (
+        play_symbol,
+        ramp.title,
+        ramp.artist,
+        ramp.album,
+        cast.app.app_id
+    )
+
+
 def main():
     """ Read the options given on the command line and do the required actions.
 
@@ -66,8 +82,7 @@ def main():
     elif opts['play'] is True:
         ramp.play()
     elif opts['status'] is True:
-        # TODO: make this into a user readable text
-        print cast.app
+        _status_command(cast, ramp)
     elif opts['volume'] is True:
         _volume_command(ramp, opts['<value>'])
 
