@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='cast',
-    version='0.1',
+    version='0.1.1',
     license='MIT',
     url='https://github.com/jaapz/cast',
     author='Jaap Broekhuizen',
