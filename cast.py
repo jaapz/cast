@@ -30,15 +30,6 @@ config.read(expanduser('~/.config/cast/config.ini'))
 CHROMECAST_HOST = config.get('cast', 'chromecast_ip')
 SLEEP_TIME = float(config.get('cast', 'sleep_time'))
 
-# HACK: disable the pychromecast and requests loggers because the pychromecast
-# module sets the global logging level to INFO and we do not want to see all
-# the ugly logging output.
-pychromecast_logger = logging.getLogger('pychromecast')
-pychromecast_logger.setLevel(logging.ERROR)
-
-requests_logger = logging.getLogger('requests.packages.urllib3.connectionpool')
-requests_logger.setLevel(logging.ERROR)
-
 
 def _to_minutes(seconds):
     """ Make a nice time string from the given seconds. """
@@ -84,6 +75,10 @@ def main():
 
     # Wait for ramp connection to be initted.
     time.sleep(SLEEP_TIME)
+
+    if ramp is None:
+        print 'Chromecast is not up or current app does not handle RAMP.'
+        return 1
 
     if opts['next']:
         ramp.next()
